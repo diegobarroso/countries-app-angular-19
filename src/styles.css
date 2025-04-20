@@ -2,5 +2,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @plugin "daisyui" {
-  themes: forest --default, esmerald --prefersdark;
+  themes: dracula --default, winter --prefersdark;
 }

@@ -1,0 +1,35 @@
+@if (countryResource.error()) {
+  <app-not-found class="mx-auto w-full max-w-[1200px]" />
+}
+
+@if (countryResource.isLoading()) {
+  <span class="loading loading-spinner text-primary text-center"></span>
+}
+
+@if (countryResource.value()?.length) {
+  @let country = countryResource.value()![0];
+  <section class="mx-auto w-full max-w-[1200px]">
+    <app-country-information [country]="country" />
+  </section>
+
+  <div class="divider mx-auto w-full max-w-[1200px]"></div>
+
+  @if (country.borders) {
+    <section class="mx-auto w-full max-w-[1200px]">
+      <country-borders class="mx-auto w-full max-w-[1200px]" [countryBorders]="getCountryBorders(country.borders)"/>
+      <div class="divider mx-auto w-full max-w-[1200px]"></div>
+    </section>
+
+  }
+
+  <section class="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full mx-auto max-w-[1200px] my-5">
+    <button [disabled]="showGlobe" class="btn btn-primary" (click)="showGlobe = true">Show country on globe</button>
+    <a class="btn btn-primary" [href]="country.maps.googleMaps" target=”_blank” rel="noreferrer noopener">Show country on Google Maps</a>
+    <a class="btn btn-primary" [href]="country.maps.openStreetMaps" target=”_blank” rel="noreferrer noopener">Show country on Open Street Maps</a>
+  </section>
+
+  @if (showGlobe) {
+    <div class="divider mx-auto w-full max-w-[1200px]"></div>
+    <app-country-globe class="w-full" [lat]="country.latlng[0]" [lng]="country.latlng[1]" [country]="country.name.common"/>
+  }
+}

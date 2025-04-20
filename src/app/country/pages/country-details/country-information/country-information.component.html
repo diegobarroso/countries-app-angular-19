@@ -1,0 +1,110 @@
+<h1 class="text-2xl font-bold">
+  {{country().flag}} {{country().name.common}}
+  @if (country().name.official) {
+    <span class="text-sm">
+      ({{country().name.official}})
+    </span>
+  }
+</h1>
+<div class="divider"></div>
+
+@if (wikipediaArticle()) {
+  <section class="card max-w-[800px] shadow-sm mx-auto mb-4">
+    <figure>
+      <img
+        [src]="country().flags.png"
+        [alt]="country().name.common" />
+    </figure>
+    <div class="card-body">
+      <p [innerHTML]="wikipediaArticle()?.snippet + ' ...'" class="text-primary text-2xl mx-auto"></p>
+      <div class="card-actions justify-center">
+        <a [href]="'https://en.wikipedia.org/?curid=' + wikipediaArticle()?.pageid" target="_blank" class="btn btn-primary">Read more on Wikipedia...</a>
+      </div>
+    </div>
+  </section>
+}
+
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Capital city</h2>
+      <p class="stat-value text-primary">{{country().capital}}</p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Region</h2>
+      <p>{{country().region}}</p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Subregion</h2>
+      <p>{{country().subregion}}</p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Population</h2>
+      <p class="stat-value text-primary">
+        <app-count-up [value]="country().population" [options]="countUpOptions"></app-count-up>
+      </p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Area (km²)</h2>
+      <p class="stat-value text-primary">
+        <app-count-up [value]="country().area"></app-count-up>
+      </p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Currency</h2>
+      <p>
+        @if (country().currencies) {
+          @for (currency of getCurrency(country().currencies); track currency.name) {
+            @if (getLanguage(country().currencies).length > 1) {
+              <li>{{currency.name}} ({{currency.symbol}})</li>
+            } @else {
+              {{currency.name}} ({{currency.symbol}})
+            }
+          }
+        }
+      </p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Languages</h2>
+      <p>
+        @if (country().languages) {
+          @for (language of getLanguage(country().languages); track language) {
+            @if (getLanguage(country().languages).length > 1) {
+              <li>{{language}}</li>
+            } @else {
+              {{language}}
+            }
+          }
+        }
+      </p>
+    </div>
+  </div>
+  <div class="card bg-base-100 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">TimeZones</h2>
+      <p>
+        @if (country().timezones) {
+          @for (timeZone of getLanguage(country().timezones); track timeZone) {
+            @if (country().timezones.length > 1) {
+              <li>{{timeZone}}</li>
+            } @else {
+              {{timeZone}}
+            }
+          }
+        }
+      </p>
+    </div>
+  </div>
+</section>

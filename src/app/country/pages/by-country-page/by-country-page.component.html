@@ -1,0 +1,12 @@
+<country-search-input
+  [placeholder]="placeholder"
+  [initialValue]="query()"
+  (capitalToSearch)="query.set($event)"
+/>
+
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isLoading]="countryResource.isLoading()"
+  [status]="countryResource.status()"
+/>

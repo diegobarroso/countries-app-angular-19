@@ -1,0 +1,61 @@
+<nav class="w-full mb-5">
+  <ul class="menu bg-base-200 sm:menu-horizontal w-full flex justify-end items-center">
+    <li>
+      <a class="btn" routerLink="/country/by-capital" routerLinkActive="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" d="M4 6h4M7 8.5h9.5m3.5-5h-3.5v4c0 2.808.322 4.329 1.224 6.111c.469.927 1.237 1.889 2.276 1.889m-12.5-7c-.098 2.45-.41 3.617-1.208 5.12c-.487.918-1.253 1.88-2.292 1.88m1.5 5a5 5 0 1 1 0-10a5 5 0 0 1 0 10Zm13 0a5 5 0 1 1 0-10a5 5 0 0 1 0 10Z" stroke-width="1"/></svg>
+        By Capital
+      </a>
+    </li>
+    <li>
+      <a class="btn" routerLink="/country/by-country" routerLinkActive="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" d="M6 15.5h3m6 0h3M3.5 11.715c1.513.294 4.623.785 8.5.785c3.878 0 6.987-.491 8.5-.785M8.5 18.5l-.586 1.172A7.6 7.6 0 0 1 6.636 21.5m8.864-3l.586 1.171c.337.675.77 1.29 1.279 1.829m3.635 2a2.6 2.6 0 0 1-.969-.174a7.6 7.6 0 0 1-2.666-1.826M3 23.5c.331 0 .662-.049.969-.174A7.6 7.6 0 0 0 6.636 21.5M3.5 3.5h17m-13.864 18h10.729M3.5 18.5V.5h17v18z" stroke-width="1"/></svg>
+        By Country
+      </a>
+    </li>
+    <li>
+      <a class="btn" routerLink="/country/by-region" routerLinkActive="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" d="M.5 15.5v-2.25S6 10.5 9.75 9.5V4.211c0-.79.23-1.565.707-2.194c.364-.48.828-1.052 1.293-1.517h.5c.465.465.93 1.037 1.293 1.517c.478.629.707 1.404.707 2.194V9.5c3.75 1 9.25 3.75 9.25 3.75v2.25s-5.5-1-9.25-1c0 0-.5 2.28-.5 6.5c0 0 1.25.75 2.25 1.75v.5S13.75 23 12 23s-4 .25-4 .25v-.5c1-1 2.25-1.75 2.25-1.75c0-4.22-.5-6.5-.5-6.5c-3.75 0-9.25 1-9.25 1Z" stroke-width="1"/></svg>
+        By Region
+      </a>
+    </li>
+    @if (theme === 'dracula') {
+      <li>
+        <button
+          type="button"
+          (click)="changeTheme('winter')"
+          class="cursor-pointer"
+          aria-label="Change to light theme"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+               class="w-10" role="img" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>
+        </button>
+      </li>
+    }
+
+    @if (theme === 'winter') {
+      <li>
+        <button
+          type="button"
+          (click)="changeTheme('dracula')"
+          class="cursor-pointer"
+          aria-label="Change to dark theme"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+               class="w-10" role="img" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75
+                     0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25
+                     C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          </svg>
+        </button>
+      </li>
+    }
+
+  </ul>
+</nav>
+

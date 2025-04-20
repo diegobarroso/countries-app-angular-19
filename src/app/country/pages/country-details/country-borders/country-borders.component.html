@@ -1,0 +1,7 @@
+<h2 class="text-2xl font-bold">Border countries</h2>
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isLoading]="countryResource.isLoading()"
+  [status]="countryResource.status()"
+/>

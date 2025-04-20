@@ -1,0 +1,56 @@
+<section class="mt-2">
+  <div class="overflow-x-auto">
+    @if (countries().length) {
+      <table class="table w-full">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Flag</th>
+            <th class="cursor-pointer" (click)="criteria.set('name')">Name</th>
+            <th class="cursor-pointer" (click)="criteria.set('capital')">Capital City</th>
+            <th class="cursor-pointer" (click)="criteria.set('population')">Population</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (country of (countries() | sort:criteria()); track country.cca2; let idx = $index) {
+          <tr>
+            <td>{{idx+1}}</td>
+            <td>
+              <img [src]="country.flagSvg" [alt]="country.alt" class="h-6" />
+            </td>
+            <td>{{country.name}}</td>
+            <td>{{country.capital}}</td>
+            <td>
+              <span class="badge badge-secondary">{{country.population | number}}</span>
+            </td>
+            <td>
+              <a [routerLink]="['/country/by', country.cca2]" class="btn btn-primary">Country details</a>
+            </td>
+          </tr>
+        }
+        </tbody>
+        <!-- foot -->
+      </table>
+    }
+    @if (errorMessage()) {
+      <div class="alert alert-error shadow-lg mt-2">
+        <div>
+          <span>{{errorMessage()}}</span>
+        </div>
+      </div>
+    }
+    @if (countries().length === 0 && !errorMessage() && !isLoading() && status() !==4) {
+      <div class="alert alert-info shadow-lg mt-2">
+        <div>
+          <span>No countries found!</span>
+        </div>
+      </div>
+    }
+
+    @if (isLoading()) {
+      <span class="loading loading-spinner text-primary"></span>
+    }
+  </div>
+</section>

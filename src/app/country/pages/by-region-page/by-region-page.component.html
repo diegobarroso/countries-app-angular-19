@@ -1,0 +1,20 @@
+
+<section class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-4 w-full mx-auto max-w-[1200px] my-5">
+  @for (region of regions; track region) {
+    <button
+      class="btn btn-primary mr-2"
+      [class.btn-secondary]="region === selectedRegion()"
+      (click)="selectedRegion.set(region)"
+    >
+      {{region}}
+    </button>
+  }
+</section>
+<div class="divider mx-auto w-full max-w-[1200px]"></div>
+
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isLoading]="countryResource.isLoading()"
+  [status]="countryResource.status()"
+/>
