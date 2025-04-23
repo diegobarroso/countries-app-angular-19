@@ -1,4 +1,4 @@
-import { Component, inject, input, OnChanges, signal, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { RESTCountry } from '../../../interfaces/rest-country.interface';
 import { CountUpComponent } from "../../../../shared/components/count-up/count-up.component";
 import { WikipediaSearchService } from '../../../services/wikipedia-search.service';
@@ -8,6 +8,7 @@ import { WikipediaArticle } from '../../../interfaces/wikipedia-article.interfas
   selector: 'app-country-information',
   imports: [CountUpComponent],
   templateUrl: './country-information.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountryInformationComponent implements OnChanges{
 
@@ -19,7 +20,7 @@ export class CountryInformationComponent implements OnChanges{
     scrollSpyOnce: true,
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(_changes: SimpleChanges): void {
     this.wikipediaSearch.searchCountryArticle(this.country().name.common)
       .subscribe(article => this.wikipediaArticle.set(article));
   }

@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, input, OnDestroy, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, input, OnDestroy, viewChild } from '@angular/core';
 import Globe from 'globe.gl';
 
 @Component({
   selector: 'app-country-globe',
   imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div #globeContainerRef class="max-w-full overflow-auto grid content-center"></div>
   `,

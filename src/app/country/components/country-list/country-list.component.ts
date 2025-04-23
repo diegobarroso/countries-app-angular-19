@@ -13,7 +13,6 @@ export class CountryListComponent {
 
   countries = input.required<Country[]>();
   criteria = signal<string | undefined>(undefined);
-  p = 1;
 
   errorMessage = input<string | unknown | undefined>();
   isLoading = input<boolean>(false);

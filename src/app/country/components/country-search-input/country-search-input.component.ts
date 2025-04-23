@@ -1,4 +1,4 @@
-import { Component, effect, input, linkedSignal, output, signal } from '@angular/core';
+import { Component, effect, input, linkedSignal, output } from '@angular/core';
 
 @Component({
   selector: 'country-search-input',
